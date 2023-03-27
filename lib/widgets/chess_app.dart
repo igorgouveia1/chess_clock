@@ -2,6 +2,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 
+import 'blitz_clock_buttom1.dart';
+import 'blitz_clock_buttom2.dart';
+
 class ChessApp extends StatefulWidget {
   const ChessApp({super.key});
 
@@ -11,10 +14,9 @@ class ChessApp extends StatefulWidget {
 
 class _ChessAppState extends State<ChessApp> {
   final Color lightGreenBlue = const Color(0xFF55efc4);
-  // Using hex value for the color
   final Color cityLight = const Color(0xFFdfe6e9);
-  // Using hex value for the color
-  Duration timeLeft = const Duration(minutes: 5);
+  Duration timeLeft1 = const Duration(minutes: 5);
+  Duration timeLeft2 = const Duration(minutes: 5);
   bool isRunning = false;
   late Timer timer;
 
@@ -30,12 +32,13 @@ class _ChessAppState extends State<ChessApp> {
         backgroundColor: const Color(0xFFdfe6e9),
         child: ListView(
           children: [
-            const DrawerHeader(child: Text('teste')),
+            const DrawerHeader(child: Text('Time Control')),
             ListTile(
-              title: const Text('Definir tempo para 1 minuto'),
+              title: const Text('1 min'),
               onTap: () {
                 setState(() {
-                  timeLeft = const Duration(minutes: 1);
+                  timeLeft1 = const Duration(minutes: 1);
+                  timeLeft2 = const Duration(minutes: 1);
                   isRunning = false;
                 });
                 timer.cancel();
@@ -43,10 +46,11 @@ class _ChessAppState extends State<ChessApp> {
               },
             ),
             ListTile(
-              title: const Text('Definir tempo para 3 minuto'),
+              title: const Text('3 min'),
               onTap: () {
                 setState(() {
-                  timeLeft = const Duration(minutes: 3);
+                  timeLeft1 = const Duration(minutes: 3);
+                  timeLeft2 = const Duration(minutes: 3);
                   isRunning = false;
                 });
                 timer.cancel();
@@ -54,10 +58,11 @@ class _ChessAppState extends State<ChessApp> {
               },
             ),
             ListTile(
-              title: const Text('Definir tempo para 5 minuto'),
+              title: const Text('5 min'),
               onTap: () {
                 setState(() {
-                  timeLeft = const Duration(minutes: 5);
+                  timeLeft1 = const Duration(minutes: 5);
+                  timeLeft2 = const Duration(minutes: 5);
                   isRunning = false;
                 });
                 timer.cancel();
@@ -70,103 +75,15 @@ class _ChessAppState extends State<ChessApp> {
       body: Center(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
-              child: SizedBox(
-                height: MediaQuery.of(context).size.height / 2.05,
-                width: double.infinity,
-                child: ElevatedButton(
-                  style: const ButtonStyle(
-                    backgroundColor:
-                        MaterialStatePropertyAll(Color(0xFF55efc4)),
-                    foregroundColor: MaterialStatePropertyAll(Colors.white),
-                    shape: MaterialStatePropertyAll(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.zero,
-                      ),
-                    ),
-                  ),
-                  child: Text(
-                    '${timeLeft.inMinutes.remainder(60).toString().padLeft(2, '0')}:'
-                    '${timeLeft.inSeconds.remainder(60).toString().padLeft(2, '0')}:'
-                    '${timeLeft.inMilliseconds.remainder(60).toString().padLeft(2, '0')}',
-                    style: const TextStyle(fontSize: 96),
-                  ),
-                  onPressed: () {
-                    if (isRunning) {
-                      timer.cancel();
-                      setState(() {
-                        isRunning = false;
-                      });
-                    } else {
-                      timer =
-                          Timer.periodic(const Duration(seconds: 1), (timer) {
-                        setState(() {
-                          timeLeft -= const Duration(seconds: 1);
-                        });
-                        if (timeLeft.inSeconds == 0) {
-                          timer.cancel();
-                          setState(() {
-                            isRunning = false;
-                          });
-                        }
-                      });
-                      setState(() {
-                        isRunning = true;
-                      });
-                    }
-                  },
-                ),
-              ),
+            BlitzClockButton1(
+              buttonColor: lightGreenBlue,
+              textColor: cityLight,
+              initialTime: timeLeft1,
             ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
-              child: SizedBox(
-                height: MediaQuery.of(context).size.height / 2.05,
-                width: double.infinity,
-                child: ElevatedButton(
-                  style: const ButtonStyle(
-                    backgroundColor: MaterialStatePropertyAll(Colors.white),
-                    foregroundColor:
-                        MaterialStatePropertyAll(Color(0xFF55efc4)),
-                    shape: MaterialStatePropertyAll(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.zero,
-                      ),
-                    ),
-                  ),
-                  child: Text(
-                    '${timeLeft.inMinutes.remainder(60).toString().padLeft(2, '0')}:'
-                    '${timeLeft.inSeconds.remainder(60).toString().padLeft(2, '0')}:'
-                    '${timeLeft.inMilliseconds.remainder(60).toString().padLeft(2, '0')}',
-                    style: const TextStyle(fontSize: 96),
-                  ),
-                  onPressed: () {
-                    if (isRunning) {
-                      timer.cancel();
-                      setState(() {
-                        isRunning = false;
-                      });
-                    } else {
-                      timer =
-                          Timer.periodic(const Duration(seconds: 1), (timer) {
-                        setState(() {
-                          timeLeft -= const Duration(seconds: 1);
-                        });
-                        if (timeLeft.inSeconds == 0) {
-                          timer.cancel();
-                          setState(() {
-                            isRunning = false;
-                          });
-                        }
-                      });
-                      setState(() {
-                        isRunning = true;
-                      });
-                    }
-                  },
-                ),
-              ),
+            BlitzClockButton2(
+              buttonColor: cityLight,
+              textColor: lightGreenBlue,
+              initialTime: timeLeft2,
             ),
           ],
         ),
