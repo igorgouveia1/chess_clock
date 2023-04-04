@@ -1,16 +1,13 @@
 # chess_clock
 
-A new Flutter project.
+Este é um projeto de um Relógio para Xadrez.
 
-## Getting Started
+## Requisitos:
 
-This project is a starting point for a Flutter application.
+- O aplicativo deve controlar o tempo que cada jogador leva para fazer sua jogada;
+- O jogador deve clicar no botão com o seu referent tempo, pausando-o;
+- Quando um dos tempos for pausado, deve-se iniciar automaticamente o cronometro do adversário;
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Roadmap:
+- Menu de configuração para o tempo dos relógios;
+- Som;
