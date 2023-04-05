@@ -11,3 +11,8 @@ Este é um projeto de um Relógio para Xadrez.
 ## Roadmap:
 - Menu de configuração para o tempo dos relógios;
 - Som;
+
+
+## UI:
+
+![image](https://user-images.githubusercontent.com/83676572/230126490-62a8d3fe-ced3-46c6-94a9-81b1f3a40ce3.png)
