@@ -21,9 +21,8 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         colorScheme: lightColorScheme,
         scaffoldBackgroundColor: lightColorScheme.primaryContainer,
-        appBarTheme: AppBarTheme(
-            centerTitle: true,
-            backgroundColor: lightColorScheme.primaryContainer),
+        appBarTheme: const AppBarTheme(
+            centerTitle: true, backgroundColor: Colors.transparent),
         floatingActionButtonTheme: FloatingActionButtonThemeData(
             backgroundColor: lightColorScheme.primary),
       ),

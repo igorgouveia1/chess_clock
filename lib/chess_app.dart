@@ -11,6 +11,8 @@ class ChessApp extends StatefulWidget {
 }
 
 class _ChessAppState extends State<ChessApp> {
+  int timerDuration1 = 5; // 5 minutos
+  int timerDuration2 = 5; // 5 minutos
   int _timeLeft1 = 300; // 5 minutos em segundos
   int _timeLeft2 = 300; // 5 minutos em segundos
   Timer? _timer1;
@@ -60,9 +62,71 @@ class _ChessAppState extends State<ChessApp> {
     }
   }
 
+  void _restartTimers() {
+    _pauseTimer1();
+    _pauseTimer2();
+    setState(() {
+      _timeLeft1 = 300;
+      _timeLeft2 = 300;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+    final buttonFontSize = screenSize.width / 3;
+
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () {
+              _restartTimers();
+            },
+            icon: const Icon(Icons.stop),
+          )
+        ],
+      ),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            const DrawerHeader(
+              child: Icon(Icons.timer),
+            ),
+            ListTile(
+              title: Text('Jogador 1 ($timerDuration1 min)'),
+              subtitle: Slider(
+                value: timerDuration1.toDouble(),
+                min: 1,
+                max: 60,
+                divisions: 59,
+                onChanged: (double value) {
+                  setState(() {
+                    timerDuration1 = value.toInt();
+                    _timeLeft1 = timerDuration1 * 60;
+                  });
+                },
+              ),
+            ),
+            ListTile(
+              title: Text('jogador 2 ($timerDuration2 min)'),
+              subtitle: Slider(
+                value: timerDuration2.toDouble(),
+                min: 1,
+                max: 60,
+                divisions: 59,
+                onChanged: (double value) {
+                  setState(() {
+                    timerDuration2 = value.toInt();
+                    _timeLeft2 = timerDuration2 * 60;
+                  });
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Center(
@@ -97,7 +161,7 @@ class _ChessAppState extends State<ChessApp> {
                     _timeLeft1 > 0
                         ? '${_timeLeft1 ~/ 60}:${(_timeLeft1 % 60).toString().padLeft(2, '0')}'
                         : '00:00',
-                    style: const TextStyle(fontSize: 64),
+                    style: TextStyle(fontSize: buttonFontSize),
                   ),
                 ),
               ),
@@ -129,7 +193,7 @@ class _ChessAppState extends State<ChessApp> {
                     _timeLeft2 > 0
                         ? '${_timeLeft2 ~/ 60}:${(_timeLeft2 % 60).toString().padLeft(2, '0')}'
                         : '00:00',
-                    style: const TextStyle(fontSize: 64),
+                    style: TextStyle(fontSize: buttonFontSize),
                   ),
                 ),
               ),
