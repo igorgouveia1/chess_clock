@@ -1,5 +1,7 @@
-import 'package:chess_clock/widgets/chess_app.dart';
+import 'package:chess_clock/shared/schemes/color_schemes.g.dart';
 import 'package:flutter/material.dart';
+
+import 'chess_app.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,9 +15,25 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Chess Clock',
+      debugShowCheckedModeBanner: false,
+      themeMode: ThemeMode.light,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
+        colorScheme: lightColorScheme,
+        scaffoldBackgroundColor: lightColorScheme.primaryContainer,
+        appBarTheme: AppBarTheme(
+            centerTitle: true,
+            backgroundColor: lightColorScheme.primaryContainer),
+        floatingActionButtonTheme: FloatingActionButtonThemeData(
+            backgroundColor: lightColorScheme.primary),
+      ),
+      darkTheme: ThemeData(
+        useMaterial3: true,
+        scaffoldBackgroundColor: lightColorScheme.primaryContainer,
+        colorScheme: darkColorScheme,
+        appBarTheme: AppBarTheme(
+            centerTitle: true,
+            backgroundColor: lightColorScheme.primaryContainer),
       ),
       home: const ChessApp(),
     );
