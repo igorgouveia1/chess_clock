@@ -15,4 +15,4 @@ Este é um projeto de um Relógio para Xadrez.
 
 ## UI:
 
-![image](https://user-images.githubusercontent.com/83676572/230126490-62a8d3fe-ced3-46c6-94a9-81b1f3a40ce3.png)
+![image](https://user-images.githubusercontent.com/83676572/230161579-473ce22b-f2e9-466c-a5a3-6f4b9a9b29df.png)
