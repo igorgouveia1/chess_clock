@@ -28,11 +28,10 @@ class MyApp extends StatelessWidget {
       ),
       darkTheme: ThemeData(
         useMaterial3: true,
-        scaffoldBackgroundColor: lightColorScheme.primaryContainer,
+        scaffoldBackgroundColor: darkColorScheme.onPrimary,
         colorScheme: darkColorScheme,
-        appBarTheme: AppBarTheme(
-            centerTitle: true,
-            backgroundColor: lightColorScheme.primaryContainer),
+        appBarTheme: const AppBarTheme(
+            centerTitle: true, backgroundColor: Colors.transparent),
       ),
       home: const ChessApp(),
     );
